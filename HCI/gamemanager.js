@@ -1,12 +1,3 @@
-<<<<<<< Updated upstream
-function initialize(){
-    document.getElementsByClassName("countryButtons").style.display = 'none';
-    document.getElementById("score").style.display = 'none';
-}
-
-function startGame(){
-    document.getElementById("score").style.display = 'block';
-=======
 let score = 0;
 let questionsRemaining = 5;
 let questions = ["cnTowerQuestion", "madagascarQuestion", "tanzaniaQuestion", "indonesiaQuestion", "easterIslandQuestion", "germanyQuestion"];
@@ -37,30 +28,32 @@ function displayInstructions(){
 }
 
 function startGame(){
-    //init();
-
     shuffleQuestions(questions);
     currentQuestionIndex = 0;
-    document.getElementById("instructions").style.display = 'none';
     questionsRemaining = 5;
-    score = 0;
-    document.getElementById("scoreGroup").style.display = 'none';
-    document.getElementById("scoreVal").innerHTML = "0";
-    document.getElementById("questionsRemaining").style.display = 'none';
->>>>>>> Stashed changes
-    document.getElementById("selectCountry").style.display = 'block';
-    document.getElementById("finalScoreDisplay").style.display = 'none';
+    document.getElementById("instructions").style.display = 'none';
     document.getElementById("canadaButton").style.display = 'block';
     document.getElementById("brazilButton").style.display = 'block';
+    document.getElementById("finalScoreDisplay").style.display = 'none';
+
+    // shuffleQuestions(questions);
+    // currentQuestionIndex = 0;
+    // document.getElementById("instructions").style.display = 'none';
+    // questionsRemaining = 5;
+    // score = 0;
+    // document.getElementById("scoreGroup").style.display = 'none';
+    // document.getElementById("scoreVal").innerHTML = "0";
+    // document.getElementById("questionsRemaining").style.display = 'none';
+    // document.getElementById("selectCountry").style.display = 'block';
+    // document.getElementById("finalScoreDisplay").style.display = 'none';
+    // document.getElementById("canadaButton").style.display = 'block';
+    // document.getElementById("brazilButton").style.display = 'block';
 }
 
 function startLandmarks(){
     document.getElementById("brazilButton").style.display = 'none';
     document.getElementById("selectCountry").textContent = "Your first destination is CN Tower";
     document.getElementById("canadaButton").style.display = 'none';
-<<<<<<< Updated upstream
-}
-=======
     document.getElementById("cnTowerQuestion").style.display = 'block';
     document.getElementById("selectCountry").style.display = 'none';
     document.getElementById("scoreGroup").style.display = 'block';
@@ -109,4 +102,3 @@ function loadQuestion(){
 //     let position = positionCheck();
 //     document.getElementById(inputtest).innerHTML = position.toString();
 // }
->>>>>>> Stashed changes
