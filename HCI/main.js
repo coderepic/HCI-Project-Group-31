@@ -14,6 +14,8 @@ var frames = {
         frames.socket = new WebSocket(url);
         frames.socket.onmessage = function (event) {
             frames.show(JSON.parse(event.data));
+            //My own line below:
+            updateNumber();
         }
     },
 
@@ -27,7 +29,7 @@ var twod = {
 
     // create a connection to the camera feed
     start: function () {
-        var url = "ws://" + host + "/twod";
+        var url = "ws://" + host + "/frames";
         twod.socket = new WebSocket(url);
 
         // whenever a new frame is received...
@@ -43,3 +45,32 @@ var twod = {
         $('img.twod').attr("src", 'data:image/pnjpegg;base64,' + twod.src);
     },
 };
+
+//EDITED CODE
+var positionCheck = function(){
+    if(frames.people[0] != null){
+        if(frames.people[0].joint[0].position.x < 0){
+            return "left";
+        }
+        else{
+            return "right";
+        }
+    }
+}
+
+function sendPositionToDisplay(){
+    let position = positionCheck();
+    document.getElementById("inputtest").innerHTML = position.toString();
+}
+
+let number = 0
+function updateNumber(){
+    // number++
+    // document.getElementById("inputtest").innerHTML = number;
+    if(frame.people.length > 0){
+        document.getElementById("inputtest").innerHTML = "hello!";
+    }
+    else{
+        document.getElementById("inputtest").innerHTML = "hello!";
+    }
+}

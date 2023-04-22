@@ -10,22 +10,120 @@
     <body>
         <img class="twod"/>
 
-        <h1 class="title">Landmark Master</h1>
-        <button id="playbutton" onclick="startGame()">Click to Begin!</button>
-        <h2 class="Instruction" id="selectCountry" style="display:none">Select a Country!</h2>
+        <h1 class="title">Geography Genius</h1>
+        <button id="playbutton" onclick="displayInstructions()">Click to Begin!</button>
+        <h2 class="Instruction" id="selectCountry" style="display:none">Choose your Trivia Topic!</h2>
 
-        <button class="countryButton" id="canadaButton" style="display:none" onclick="startCanada()">Canada</button>
+        <button class="countryButton" id="canadaButton" style="display:none" onclick="startLandmarks()">Identifying Landmarks</button>
         <p></p>
-        <button class="countryButton" id="brazilButton" style="display:none" onclick="startBrazil()">Brazil</button>
-        <!--
-        <p></p>
-        <button class="countryButton" id="southAfricaButton" style="display:none" onclick="startSAfrica()">South Africa</button>
-        -->
+        <button class="countryButton" id="brazilButton" style="display:none" onclick="startMaps()">Identifying Maps</button>
         <p></p>
         <h2 id="score" style="display:none">Score: </h2>
 
 
+<<<<<<< Updated upstream
         <h2 id="niagaraFallsTitle"
+=======
+        <div id="questionsRemaining" style="display:none; text-align:center">
+            <h2 class="scoreElement">Questions remaining: </h2>
+            <h2 class="scoreElement" id="questionsRemainingElement"></h2>
+        </div>
+
+        <div id="instructions" style="display:none; width:60%; padding-left:20%">
+            <h2 style="text-align:center">How to Play</h2>
+            <h4>Welcome to Geography Genius!</h4>
+            <h4>Here, you can select whether you want to test your knowledge 
+                of landmarks around the world, or your knowledge of maps.
+                 Stand to the side of the screen (right side or left side)
+                  corresponding to the game option you want to select. </h4>
+            <h4>Once you start the game, you will be asked a series of 5 trivia questions.
+                 You will have 15 seconds to answer each question. Stand to the side of the 
+                 screen (left or right) corresponding to your selection. When the timer
+                  reaches zero, your selection will be confirmed. </h4>
+            <h4>Each question you answer correctly will give you a point. 
+                After five questions have been answered, your final score will be displayed. </h4>
+            <h4>
+                Between questions, you can quit to the main menu by raising both arms in the air.
+            </h4>
+
+            <div style="text-align:center">
+                <button class="continueButton" onclick="startGame()" style="text-align:center">Raise one arm to begin!</h3>
+            </div>
+        </div>
+
+
+
+        <!--Landmark Trivia Questions-->
+
+        <div class="triviaQuestion" id="cnTowerQuestion" style="display:none">
+            <h1>What is this geographic landmark?</h1>
+            <img src="explore-cn-tower .jpg" style="text-align:center; margin:auto; width: 500px">
+            <p></p>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">CN Tower, Canada</h2>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Sky Tower, New Zealand</h2>
+        </div>
+
+        <div class="triviaQuestion" id="madagascarQuestion" style="display:none">
+            <h1>What is this geographic landmark?</h1>
+            <img src="grandtsingy.png" style="text-align:center; margin:auto; width: 500px">
+            <p></p>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Badlands National Park, USA</h2>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">Grand Tsingy, Madgacascar</h2>
+        </div>
+
+        <div class="triviaQuestion" id="tanzaniaQuestion" style="display:none">
+            <h1>What is this geographic landmark?</h1>
+            <img src="mountk.jpg" style="text-align:center; margin:auto; width: 500px">
+            <p></p>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Mount Fuji, Japan</h2>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">Mount Kilimanjaro, Tanzania</h2>
+        </div>
+
+        <div class="triviaQuestion" id="indonesiaQuestion" style="display:none">
+            <h1>What is this geographic landmark?</h1>
+            <img src="temple.jpg" style="text-align:center; margin:auto; width: 500px">
+            <p></p>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">Borobudur Temple, Indonesia</h2>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Angkor Wat, Cambodia</h2>
+        </div>
+
+        <div class="triviaQuestion" id="easterIslandQuestion" style="display:none">
+            <h1>What is this geographic landmark?</h1>
+            <img src="easterisland.jpg" style="text-align:center; margin:auto; width: 500px">
+            <p></p>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Easter Island Moai, Ecuador</h2>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">Easter Island Moai, Chile</h2>
+        </div>
+
+        <div class="triviaQuestion" id="germanyQuestion" style="display:none">
+            <h1>What is this geographic landmark?</h1>
+            <img src="bastei.jpg" style="text-align:center; margin:auto; width: 500px">
+            <p></p>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">Bastei, Germany</h2>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Tianzi Mountain, China</h2>
+        </div>
+
+        <!--LandMark Result Display-->
+
+        <div class="resultDisplay" id="correctDisplay" style="display:none; text-align:center">
+            <h1>Correct!</h1>
+            <button class="continueButton" id="continueButton" onClick="loadQuestion()">Continue</button>
+        </div>
+
+        <div class="resultDisplay" id="incorrectDisplay" style="display:none; text-align:center">
+            <h1>Incorrect!</h1>
+            <button class="continueButton" id="continueButton" onClick="loadQuestion()">Continue</button>
+        </div>
+>>>>>>> Stashed changes
+
+        <!--Final Results Screen-->
+        <div class="finalScoreDisplay" id="finalScoreDisplay" style="display:none; text-align:center">
+            <h1>Congratulations! You completed the game! View your final score above.</h1>
+            <button onclick="startGame()">Play Again</button>
+            <button onClick="init()">Quit to main menu</button>
+        </div>
+
+        <h1 id="inputtest">Hello!</h1>
 
     </body>
 </html>

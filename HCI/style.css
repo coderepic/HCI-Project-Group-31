@@ -21,4 +21,27 @@
     text-align: center;
     margin: auto;
     display: flex;
+<<<<<<< Updated upstream
+=======
+}
+
+.triviaOption{
+    display: inline-block;
+    padding: 20px;
+    text-align: center
+}
+
+.triviaQuestion{
+    text-align: center;
+}
+
+.scoreGroup{
+    text-align: center;
+}
+
+.scoreElement{
+    display: inline-block;
+    padding: 0px;
+    text-align: center;
+>>>>>>> Stashed changes
 }
