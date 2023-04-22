@@ -15,7 +15,14 @@ var frames = {
         frames.socket.onmessage = function (event) {
             frames.show(JSON.parse(event.data));
             //My own line below:
-            updateNumber();
+            //updateText();
+            let frame = JSON.parse(event.data);
+            if(frame.people.length > 2){
+                document.getElementById("inputtest").innerHTML = "more than 2 people at display";
+            }
+            else{
+                document.getElementById("inputtest").innerHTML = "2 or less people at display";
+            }
         }
     },
 
@@ -64,13 +71,13 @@ function sendPositionToDisplay(){
 }
 
 let number = 0
-function updateNumber(){
+function updateText(){
     number++
     document.getElementById("inputtest").innerHTML = number;
-    // if(frame.people.length > 0){
+    // if(people.length > 0){
     //     document.getElementById("inputtest").innerHTML = "hello!";
     // }
     // else{
-    //     document.getElementById("inputtest").innerHTML = "hello!";
+    //     document.getElementById("inputtest").innerHTML = "bye!";
     // }
 }
