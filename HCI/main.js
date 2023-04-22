@@ -65,12 +65,12 @@ function sendPositionToDisplay(){
 
 let number = 0
 function updateNumber(){
-    // number++
-    // document.getElementById("inputtest").innerHTML = number;
-    if(frame.people.length > 0){
-        document.getElementById("inputtest").innerHTML = "hello!";
-    }
-    else{
-        document.getElementById("inputtest").innerHTML = "hello!";
-    }
+    number++
+    document.getElementById("inputtest").innerHTML = number;
+    // if(frame.people.length > 0){
+    //     document.getElementById("inputtest").innerHTML = "hello!";
+    // }
+    // else{
+    //     document.getElementById("inputtest").innerHTML = "hello!";
+    // }
 }

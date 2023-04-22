@@ -35,6 +35,10 @@ function startGame(){
     document.getElementById("canadaButton").style.display = 'block';
     document.getElementById("brazilButton").style.display = 'block';
     document.getElementById("finalScoreDisplay").style.display = 'none';
+    document.getElementById("scoreGroup").style.display = 'none';
+    document.getElementById("scoreVal").innerHTML = score.toString();
+    document.getElementById("questionsRemaining").style.display = 'none';
+
 
     // shuffleQuestions(questions);
     // currentQuestionIndex = 0;
