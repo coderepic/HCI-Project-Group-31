@@ -1,7 +1,7 @@
 let score = 0;
 let questionsRemaining = 5;
 let questions = ["cnTowerQuestion", "madagascarQuestion", "tanzaniaQuestion", "indonesiaQuestion", "easterIslandQuestion", "germanyQuestion"];
-let mapQuestions = ["nyMap", "denmarkMap", "thailandMap", "SFMap", "BostonMap"];
+let mapQuestions = ["nyMap", "denmarkMap", "thailandMap", "SFMap", "BostonMap", "PNGmap"];
 var questionList;
 currentQuestionIndex = 0;
 
@@ -12,6 +12,7 @@ function shuffleQuestions(array){
 }
 
 function init(){
+    document.getElementById("title").style.display = 'block';
     shuffleQuestions(questions);
     currentQuestionIndex = 0;
     questionsRemaining = 5;
@@ -25,6 +26,7 @@ function init(){
 }
 
 function displayInstructions(){
+    document.getElementById("title").style.display = 'none';
     document.getElementById("instructions").style.display = 'block';
     document.getElementById("playbutton").style.display = 'none';
 }

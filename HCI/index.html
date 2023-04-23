@@ -10,7 +10,7 @@
     <body>
         <img class="twod"/>
 
-        <h1 class="title">Geography Genius</h1>
+        <h1 class="title" id="title">Geography Genius</h1>
         <button id="playbutton" onclick="displayInstructions()">Click to Begin!</button>
         <h2 class="Instruction" id="selectCountry" style="display:none">Choose your Trivia Topic!</h2>
         <button class="countryButton" id="canadaButton" style="display:none" onclick="startTrivia(1)">Identifying Landmarks</button>
@@ -145,6 +145,13 @@
             <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Princeton, New Jersey</h2>
         </div>
 
+        <div class="triviaQuestion" id="PNGmap" style="display:none">
+            <h1>Which location is depicted in the map below?</h1>
+            <img src="PNG.png" style="text-align:center; margin:auto; width: 500px">
+            <p></p>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">The Philippines</h2>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">Papua New Guinea</h2>
+        </div>
 
 
         <!--LandMark Result Display-->
