@@ -13,9 +13,9 @@
         <h1 class="title">Geography Genius</h1>
         <button id="playbutton" onclick="displayInstructions()">Click to Begin!</button>
         <h2 class="Instruction" id="selectCountry" style="display:none">Choose your Trivia Topic!</h2>
-        <button class="countryButton" id="canadaButton" style="display:none" onclick="startLandmarks()">Identifying Landmarks</button>
+        <button class="countryButton" id="canadaButton" style="display:none" onclick="startTrivia(1)">Identifying Landmarks</button>
         <p></p>
-        <button class="countryButton" id="brazilButton" style="display:none" onclick="startMaps()">Identifying Maps</button>
+        <button class="countryButton" id="brazilButton" style="display:none" onclick="startTrivia(2)">Identifying Maps</button>
         <p></p>
         <h2 id="score" style="display:none">Score: </h2>
 
@@ -103,6 +103,50 @@
             <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Tianzi Mountain, China</h2>
         </div>
 
+        <!--Maps Trivia Questions-->
+
+        <div class="triviaQuestion" id="nyMap" style="display:none">
+            <h1>Which location is depicted in the map below?</h1>
+            <img src="nyMap.png" style="text-align:center; margin:auto; width: 500px">
+            <p></p>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">New York, New York</h2>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">New Haven, Connecticut</h2>
+        </div>
+
+        <div class="triviaQuestion" id="denmarkMap" style="display:none">
+            <h1>Which location is depicted in the map below?</h1>
+            <img src="denmarkMap.png" style="text-align:center; margin:auto; width: 500px">
+            <p></p>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Ukraine</h2>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">Denmark</h2>
+        </div>
+
+        <div class="triviaQuestion" id="thailandMap" style="display:none">
+            <h1>Which location is depicted in the map below?</h1>
+            <img src="thailandMap.jpg" style="text-align:center; margin:auto; width: 500px">
+            <p></p>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Singapore</h2>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">Thailand</h2>
+        </div>
+
+        <div class="triviaQuestion" id="SFMap" style="display:none">
+            <h1>Which location is depicted in the map below?</h1>
+            <img src="SFBayMap.png" style="text-align:center; margin:auto; width: 500px">
+            <p></p>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">San Francisco Bay</h2>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Sydney Harbor</h2>
+        </div>
+
+        <div class="triviaQuestion" id="BostonMap" style="display:none">
+            <h1>Which location is depicted in the map below?</h1>
+            <img src="boston.jpg" style="text-align:center; margin:auto; width: 500px">
+            <p></p>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">Boston, Massachusetts</h2>
+            <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Princeton, New Jersey</h2>
+        </div>
+
+
+
         <!--LandMark Result Display-->
 
         <div class="resultDisplay" id="correctDisplay" style="display:none; text-align:center">
@@ -123,6 +167,8 @@
         </div>
 
         <h1 id="inputtest">Hello!</h1>
+        <h1 id="armtest">armtest</h1>
+        <h1 id="postest">postest</h1>
 
     </body>
 </html>

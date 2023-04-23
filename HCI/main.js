@@ -17,12 +17,17 @@ var frames = {
             //My own line below:
             //updateText();
             let frame = JSON.parse(event.data);
-            if(frame.people.length > 2){
-                document.getElementById("inputtest").innerHTML = "more than 2 people at display";
+            if(frame.people.length > 0){
+                document.getElementById("inputtest").innerHTML = "Someone at display";
+                //document.getElementById("postest").innerHTML = frame.people[0].x_pos.toString();
+                document.getElementById("postest").innerHTML = frame.people[0].joints[8].position.x.toString();
             }
             else{
-                document.getElementById("inputtest").innerHTML = "2 or less people at display";
+                document.getElementById("inputtest").innerHTML = "Nobody at display";
+                document.getElementById("postest").innerHTML = 'no people';
             }
+            //displayArmRaised(frame);
+            //displayPosition(frame);
         }
     },
 
@@ -54,14 +59,17 @@ var twod = {
 };
 
 //EDITED CODE
-var positionCheck = function(){
-    if(frames.people[0] != null){
-        if(frames.people[0].joint[0].position.x < 0){
+function positionCheck(frame){
+    if(frame.people[0] != null){
+        if(frame.people[0].joint[0].position.x < 0){
             return "left";
         }
         else{
             return "right";
         }
+    }
+    else{
+        return "nobody!";
     }
 }
 
@@ -80,4 +88,51 @@ function updateText(){
     // else{
     //     document.getElementById("inputtest").innerHTML = "bye!";
     // }
+}
+
+function isOneArmRaised(frameinput){
+    let leftHandHeight = frameinput.people[0].joints[8].position.y;
+    let rightHandHeight = frameinput.people[0].joints[15].position.y;
+    let leftShoulderHeight = frameinput.people[0].joints[5].position.y;
+    let rightShoulderHeight = frameinput.people[0].joints[12].positon.y;
+
+    if((leftHandHeight > leftShoulderHeight) && !(rightHandHeight > rightShoulderHeight)){
+        return true;
+    }
+    else if((rightHandHeight > rightShoulderHeight) && !(leftHandHeight > leftShoulderHeight)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function isPlayerPresent(frameinput){
+    if(frameinput.people.length > 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function displayArmRaised(frame){
+    if(isOneArmRaised(frame) == true){
+        document.getElementById("armtest").innerHTML = "arm raised";
+    }
+    else{
+        document.getElementById("armtest").innerHTML = "arm not raised";
+    }
+}
+
+function displayPosition(frame){
+    if(positionCheck(frame) == "left"){
+        document.getElementById("postest").innerHTML = "left";
+    }
+    else if(positionCheck(frame) == "right"){
+        document.getElementById("postest").innerHTML = "right";
+    }
+    else{
+        document.getElementById("postest").innerHTML = "nobody here!";
+    }
 }
