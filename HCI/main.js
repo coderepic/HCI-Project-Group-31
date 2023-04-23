@@ -15,19 +15,83 @@ var frames = {
         frames.socket.onmessage = function (event) {
             frames.show(JSON.parse(event.data));
             //My own line below:
-            //updateText();
             let frame = JSON.parse(event.data);
             if(frame.people.length > 0){
                 document.getElementById("inputtest").innerHTML = "Someone at display";
-                //document.getElementById("postest").innerHTML = frame.people[0].x_pos.toString();
                 document.getElementById("postest").innerHTML = frame.people[0].joints[8].position.x.toString();
+                let lh = frame.people[0].joints[8].position.y;
+                let ls = frame.people[0].joints[5].position.y;
+                let rh = frame.people[0].joints[15].position.y;
+                let rs = frame.people[0].joints[12].position.y;
+
+                let lhx = frame.people[0].joints[8].position.x;
+                let lsx = frame.people[0].joints[5].position.x;
+                let rhx = frame.people[0].joints[15].position.x;
+                let rsz = frame.people[0].joints[12].position.x;
+
+                console.log(lhx);
+                console.log(lsx);
+
+                if(leftArmRaised(lh, ls) && rightArmRaised(rh, rs)){
+                    document.getElementById("armtest").innerHTML = "both arms raised";
+                }
+                else if(leftArmRaised(lh, ls)){
+                    document.getElementById("armtest").innerHTML = "left arm raised";
+                }
+                else if(rightArmRaised(rh, rs)){
+                    document.getElementById("armtest").innerHTML = "right arm raised";
+                }
+                else{
+                    document.getElementById("armtest").innerHTML = "no arms raised";
+                }
+
+                //Allow user to select answers with their hands
+                if(currentSceneType == "question"){
+                    if(leftArmSelection(lhx, lsx) && rightArmSelection(rhx, rsx)){
+                        //Nothing happens
+                    }
+                    else if(leftArmSelection(lhx, lsx)){
+                        //Select left option
+                        resultsScreen(1);
+                    }
+                    else if(rightArmSelection(rhx, rsx)){
+                        //Select right option
+                        resultsScreen(0);
+                    }
+                }
+
+                //Allow user to transition with their arms.
+                if(currentSceneType == "titleScreen"){
+                    if(leftArmRaised(lh, ls)){
+                        displayInstructions();
+                    }
+                }
+                else if(currentSceneType == "instructionsScreen"){
+                    if(leftArmRaised(lh, ls)){
+                        startGame();
+                    }
+                }
+                else if(currentSceneType == "pickGameMode"){
+                    if(leftArmSelection(lhx, lsx)){
+                        startTrivia(0);
+                    }
+                    else if(rightArmSelection(rhx, rsx)){
+                        startTrivia(1);
+                    }
+                }
+                else if(currentScenType == "question"){
+                    if(leftArmSelection(lhx, lsx)){
+                        resultScreen(0);
+                    }
+                    else if(rightArmSelection(rhx, rsx)){
+                        resultScreen(1);
+                    }
+                }
             }
             else{
                 document.getElementById("inputtest").innerHTML = "Nobody at display";
                 document.getElementById("postest").innerHTML = 'no people';
             }
-            //displayArmRaised(frame);
-            //displayPosition(frame);
         }
     },
 
@@ -59,47 +123,40 @@ var twod = {
 };
 
 //EDITED CODE
-function positionCheck(frame){
-    if(frame.people[0] != null){
-        if(frame.people[0].joint[0].position.x < 0){
-            return "left";
-        }
-        else{
-            return "right";
-        }
-    }
-    else{
-        return "nobody!";
-    }
-}
-
 function sendPositionToDisplay(){
     let position = positionCheck();
     document.getElementById("inputtest").innerHTML = position.toString();
 }
 
-let number = 0
-function updateText(){
-    number++
-    document.getElementById("inputtest").innerHTML = number;
-    // if(people.length > 0){
-    //     document.getElementById("inputtest").innerHTML = "hello!";
-    // }
-    // else{
-    //     document.getElementById("inputtest").innerHTML = "bye!";
-    // }
-}
-
-function isOneArmRaised(frameinput){
-    let leftHandHeight = frameinput.people[0].joints[8].position.y;
-    let rightHandHeight = frameinput.people[0].joints[15].position.y;
-    let leftShoulderHeight = frameinput.people[0].joints[5].position.y;
-    let rightShoulderHeight = frameinput.people[0].joints[12].positon.y;
-
-    if((leftHandHeight > leftShoulderHeight) && !(rightHandHeight > rightShoulderHeight)){
+function leftArmRaised(lh, ls){
+    if(lh < ls){
         return true;
     }
-    else if((rightHandHeight > rightShoulderHeight) && !(leftHandHeight > leftShoulderHeight)){
+    else{
+        return false;
+    }
+}
+
+function rightArmRaised(rh, rs){
+    if(rh < rs){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function leftArmSelection(lhx, lsx){
+    if((lhx - lsx) > 450){
+        return true;
+    }
+    else{
+        return false
+    }
+}
+
+function rightArmSelection(rhx, rsx){
+    if((rsx - rhx) > 450){
         return true;
     }
     else{
@@ -113,15 +170,6 @@ function isPlayerPresent(frameinput){
     }
     else{
         return false;
-    }
-}
-
-function displayArmRaised(frame){
-    if(isOneArmRaised(frame) == true){
-        document.getElementById("armtest").innerHTML = "arm raised";
-    }
-    else{
-        document.getElementById("armtest").innerHTML = "arm not raised";
     }
 }
 

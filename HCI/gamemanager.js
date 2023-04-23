@@ -4,6 +4,7 @@ let questions = ["cnTowerQuestion", "madagascarQuestion", "tanzaniaQuestion", "i
 let mapQuestions = ["nyMap", "denmarkMap", "thailandMap", "SFMap", "BostonMap", "PNGmap"];
 var questionList;
 currentQuestionIndex = 0;
+var currentSceneType = "titleScreen";
 
 //Code below obtained from: 
 //https://www.educative.io/answers/how-to-shuffle-an-array-in-javascript
@@ -23,12 +24,14 @@ function init(){
     document.getElementById("finalScoreDisplay").style.display = 'none';
     document.getElementById("questionsRemaining").style.display = 'none';
     document.getElementById("playbutton").style.display = 'block';
+    currentSceneType = "titleScreen";
 }
 
 function displayInstructions(){
     document.getElementById("title").style.display = 'none';
     document.getElementById("instructions").style.display = 'block';
     document.getElementById("playbutton").style.display = 'none';
+    currentSceneType = "instructionsScreen";
 }
 
 function startGame(type){
@@ -49,6 +52,7 @@ function startGame(type){
     document.getElementById("scoreGroup").style.display = 'none';
     document.getElementById("scoreVal").innerHTML = score.toString();
     document.getElementById("questionsRemaining").style.display = 'none';
+    currentSceneType = "pickGameMode";
 }
 
 function startTrivia(type){
@@ -70,6 +74,7 @@ function startTrivia(type){
     document.getElementById("questionsRemaining").style.display = 'block';
     document.getElementById("questionsRemainingElement").innerHTML = questionsRemaining.toString();
     loadQuestion();
+    currentSceneType = "question";
 }
 
 function resultScreen(correct){
@@ -89,7 +94,7 @@ function resultScreen(correct){
     questionsRemaining = questionsRemaining - 1;
     document.getElementById("scoreVal").innerHTML = score.toString();
     document.getElementById("questionsRemainingElement").innerHTML = questionsRemaining.toString();
-
+    currentSceneType = "results";
 }
 
 function displayResults(){
