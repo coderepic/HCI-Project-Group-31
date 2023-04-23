@@ -61,17 +61,33 @@ img {
     align-items: center;
     height: 100%;
     width: 50%;
+    border:1px solid black;
 }
 
 .optionsContainer {
-    display: flex;
     flex-direction: row;
     height: 60vh;
+    border:1px solid black;
 }
 
-.half1, .half2 {
-    flex: 1;
+.topBarContainer{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
 }
+
+.timer{
+    display: flex;
+    flex: 1;
+}
+
+.questionPlaceholder{
+    display: flex;
+    flex: 1;
+}
+
+.questionsAndScore{
+    display: flex;
+    flex: 1;
+}
+
+

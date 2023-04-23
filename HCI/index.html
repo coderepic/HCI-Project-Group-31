@@ -18,16 +18,6 @@
         <button class="countryButton" id="brazilButton" style="display:none" onclick="startTrivia(2)">Identifying Maps</button>
         <p></p>
         <!-- <h2 id="score" style="display:none">Score: </h2> -->
-        
-        <div id="questionsRemaining" class="infoElement" style="display:none; text-align:right">
-            <h2 class="scoreElement">Questions remaining: </h2>
-            <h2 class="scoreElement" id="questionsRemainingElement"></h2>
-        </div>
-
-        <div id="scoreGroup" class="infoElement" style="display:none; text-align:right">
-            <h2 class="scoreElement">Score: </h2>
-            <h2 class="scoreElement" id="scoreVal"></h2>
-        </div>
 
         <div id="instructions" style="display:none; width:60%; padding-left:20%">
             <h2 style="text-align:center">How to Play</h2>
@@ -43,7 +33,7 @@
             <h4>Each question you answer correctly will give you a point. 
                 After five questions have been answered, your final score will be displayed. </h4>
             <h4>
-                You can quit the game at any time by walking away from the display.
+                Between questions, you can quit to the main menu by raising both arms in the air.
             </h4>
 
             <div style="text-align:center">
@@ -52,15 +42,65 @@
         </div>
 
 
+        <!-- Top Bar -->
+        
+        <div class="topBarContainer">
+            <div class="timer">timer</div>                
+            <div class="questionPlaceholder" id="questionPlaceholder">
+                <div class="triviaQuestion" id="cnTowerQuestion" style="display:none">
+                    <h2>What is this geographic landmark?</h2>
+                    <img src="explore-cn-tower .jpg" style="text-align:center; margin:auto; width: 500px">
+                    <p></p>
+                </div>
+                <div class="triviaQuestion" id="madagascarQuestion" style="display:none">
+                    <h1>What is this geographic landmark?</h1>
+                    <img src="grandtsingy.png" style="text-align:center; margin:auto; width: 500px">
+                    <p></p>
+                </div>
+                <div class="triviaQuestion" id="tanzaniaQuestion" style="display:none">
+                    <h1>What is this geographic landmark?</h1>
+                    <img src="mountk.jpg" style="text-align:center; margin:auto; width: 500px">
+                    <p></p>
+                </div>
+                <div class="triviaQuestion" id="indonesiaQuestion" style="display:none">
+                    <h1>What is this geographic landmark?</h1>
+                    <img src="temple.jpg" style="text-align:center; margin:auto; width: 500px">
+                    <p></p>
+                </div>
+                <div class="triviaQuestion" id="easterIslandQuestion" style="display:none">
+                    <h1>What is this geographic landmark?</h1>
+                    <img src="easterisland.jpg" style="text-align:center; margin:auto; width: 500px">
+                    <p></p>
+                </div>
+                <div class="triviaQuestion" id="germanyQuestion" style="display:none">
+                    <h1>What is this geographic landmark?</h1>
+                    <img src="bastei.jpg" style="text-align:center; margin:auto; width: 500px">
+                    <p></p>
+                </div>
+            </div>                
+            <div id="questionsAndScore">
+                <div id="questionsRemaining" class="infoElement" style="display:none; text-align:right">
+                    <h2 class="scoreElement">Questions remaining: </h2>
+                    <h2 class="scoreElement" id="questionsRemainingElement"></h2>
+                </div>                
+                <div id="scoreGroup" class="infoElement" style="display:none; text-align:right">
+                    <h2 class="scoreElement">Score: </h2>
+                    <h2 class="scoreElement" id="scoreVal"></h2>
+                </div>
+            </div> 
+        </div>
+
+
+        
 
         <!--Landmark Trivia Questions-->
 
-        <div class="triviaQuestion" id="cnTowerQuestion" style="display:none">
+        <!-- <div class="triviaQuestion" id="cnTowerQuestion" style="display:none">
             <h1>What is this geographic landmark?</h1>
             <img src="explore-cn-tower .jpg" style="text-align:center; margin:auto; width: 500px">
-            <p></p>
+            <p></p> -->
             
-            <div class="optionsContainer">
+            <div class="optionsContainer" id="cnTowerQuestionOptions" style="display: none">
                 <div class="leftContainer">
                     <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">CN Tower, Canada</h2>
                 </div>
@@ -70,14 +110,14 @@
             </div>
                 <!-- <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">CN Tower, Canada</h2>
                 <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Sky Tower, New Zealand</h2>          -->            
-        </div>
+        <!-- </div> -->
 
-        <div class="triviaQuestion" id="madagascarQuestion" style="display:none">
+        <!-- <div class="triviaQuestion" id="madagascarQuestion" style="display:none">
             <h1>What is this geographic landmark?</h1>
             <img src="grandtsingy.png" style="text-align:center; margin:auto; width: 500px">
-            <p></p>
+            <p></p> -->
 
-            <div class="optionsContainer">
+            <div class="optionsContainer" id="madagascarQuestionOptions" style="display: none">
                 <div class="leftContainer">
                     <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Badlands National Park, USA</h2>
                 </div>
@@ -85,14 +125,14 @@
                     <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">Grand Tsingy, Madgacascar</h2>
                 </div>                    
             </div>            
-        </div>
+        <!-- </div> -->
 
-        <div class="triviaQuestion" id="tanzaniaQuestion" style="display:none">
+        <!-- <div class="triviaQuestion" id="tanzaniaQuestion" style="display:none">
             <h1>What is this geographic landmark?</h1>
             <img src="mountk.jpg" style="text-align:center; margin:auto; width: 500px">
-            <p></p>
+            <p></p> -->
 
-            <div class="optionsContainer">
+            <div class="optionsContainer" id="tanzaniaQuestionOptions" style="display: none">
                 <div class="leftContainer">
                     <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Mount Fuji, Japan</h2>        
                 </div>
@@ -100,15 +140,14 @@
                     <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">Mount Kilimanjaro, Tanzania</h2>  
                 </div>                    
             </div>       
+        <!-- </div> -->
 
-        </div>
-
-        <div class="triviaQuestion" id="indonesiaQuestion" style="display:none">
+        <!-- <div class="triviaQuestion" id="indonesiaQuestion" style="display:none">
             <h1>What is this geographic landmark?</h1>
             <img src="temple.jpg" style="text-align:center; margin:auto; width: 500px">
-            <p></p>
+            <p></p> -->
 
-            <div class="optionsContainer">
+            <div class="optionsContainer" id="indonesiaQuestionOptions" style="display: none">
                 <div class="leftContainer">
                     <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">Borobudur Temple, Indonesia</h2>
                 </div>
@@ -116,14 +155,14 @@
                     <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Angkor Wat, Cambodia</h2>
                 </div>                    
             </div>              
-        </div>
+        <!-- </div> -->
 
-        <div class="triviaQuestion" id="easterIslandQuestion" style="display:none">
+        <!-- <div class="triviaQuestion" id="easterIslandQuestion" style="display:none">
             <h1>What is this geographic landmark?</h1>
             <img src="easterisland.jpg" style="text-align:center; margin:auto; width: 500px">
-            <p></p>
+            <p></p> -->
 
-            <div class="optionsContainer">
+            <div class="optionsContainer" id="easterIslandQuestionOptions" style="display: none">
                 <div class="leftContainer">
                     <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Easter Island Moai, Ecuador</h2>        
                 </div>
@@ -131,13 +170,13 @@
                     <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">Easter Island Moai, Chile</h2>
                 </div>                    
             </div>             
-        </div>
+        <!-- </div> -->
 
-        <div class="triviaQuestion" id="germanyQuestion" style="display:none">
+        <!-- <div class="triviaQuestion" id="germanyQuestion" style="display:none">
             <h1>What is this geographic landmark?</h1>
             <img src="bastei.jpg" style="text-align:center; margin:auto; width: 500px">
-            <p></p>
-            <div class="optionsContainer">
+            <p></p> -->
+            <div class="optionsContainer" id="germanyQuestionOptions" style="display: none">
                 <div class="leftContainer">
                     <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(1)">Bastei, Germany</h2>
                 </div>
@@ -145,7 +184,7 @@
                     <button class="triviaOption" id="cnTowerAnswer" onclick="resultScreen(0)">Tianzi Mountain, China</h2>  
                 </div>                    
             </div>            
-        </div>
+        <!-- </div> -->
 
         <!--Maps Trivia Questions-->
 
@@ -222,4 +261,7 @@
         <h1 id="postest">postest</h1>
 
     </body>
+    <script>
+    </script>
 </html>
+

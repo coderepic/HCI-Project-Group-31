@@ -79,9 +79,15 @@ function startTrivia(type){
 
 function resultScreen(correct){
     //document.getElementById("cnTowerQuestion").style.display = "none";
+    optionsArray = document.getElementsByClassName("optionsContainer");
     questionsArray = document.getElementsByClassName("triviaQuestion");
+        
     for(let i=0; i<questionsArray.length; i++){
-        questionsArray[i].style.display = 'none';
+        questionsArray[i].style.display = 'none';        
+    }
+
+    for(let i=0; i<optionsArray.length; i++) {
+        optionsArray[i].style.display = 'none';
     }
 
     if (correct == 1) {
@@ -109,6 +115,7 @@ function loadQuestion(){
     else{
         currentQuestionIndex++;
         document.getElementById(questionList[currentQuestionIndex]).style.display = "block";
+        document.getElementById(questionList[currentQuestionIndex] + "Options").style.display = "flex";
     }
     document.getElementById("correctDisplay").style.display = "none";
     document.getElementById("incorrectDisplay").style.display = "none";
