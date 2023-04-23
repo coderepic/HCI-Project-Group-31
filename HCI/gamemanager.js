@@ -78,7 +78,9 @@ function startTrivia(type){
 }
 
 function resultScreen(correct){
+    // clearInterval(timerId);
     //document.getElementById("cnTowerQuestion").style.display = "none";
+    resetTimer();
     optionsArray = document.getElementsByClassName("optionsContainer");
     questionsArray = document.getElementsByClassName("triviaQuestion");
         
@@ -104,12 +106,14 @@ function resultScreen(correct){
 }
 
 function displayResults(){
-    document.getElementById("finalScoreDisplay").style.display = "block";
+    document.getElementById("finalScoreDisplay").style.display = "block";        
 }
 
-function loadQuestion(){
+function loadQuestion(){    
+    startTimer();
     if(questionsRemaining <= 0){
         currentQuestionIndex = 0;
+        resetTimer();
         displayResults();
     }
     else{
@@ -119,7 +123,46 @@ function loadQuestion(){
     }
     document.getElementById("correctDisplay").style.display = "none";
     document.getElementById("incorrectDisplay").style.display = "none";
+
 }
+
+let timerId = null;
+let secondsLeft = 30;
+function startTimer() {    
+    const timerElement = document.getElementById("timer");
+    timerElement.style.display = "block";
+    timerId = setInterval(() => {
+        secondsLeft--;
+        if (secondsLeft < 0) {
+            resultScreen(0);
+            clearInterval(timerId);
+            secondsLeft = 30;
+        } 
+        else {
+        timerElement.innerHTML = formatTime(secondsLeft);
+        }
+    }, 1000);
+}
+
+function resetTimer() {
+    console.log('resetting timer');
+    clearInterval(timerId);
+    secondsLeft = 30;
+    document.getElementById("timer").innerHTML = formatTime(secondsLeft);
+    document.getElementById("timer").style.display = "none";         
+}
+
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${padZeroes(minutes)}:${padZeroes(remainingSeconds)}`;
+}
+
+function padZeroes(value) {
+    return value < 10 ? `0${value}` : value;
+}
+
+
 
 // function update_test_value(){
 //     let position = positionCheck();
