@@ -34,11 +34,44 @@
 }
 
 .scoreGroup{
-    text-align: center;
+    text-align: right;
+}
+
+.questionsRemaining{
+    text-align: right;
 }
 
 .scoreElement{
     display: inline-block;
     padding: 0px;
     text-align: center;
+}
+
+img {
+    display: block;
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+}
+
+.leftContainer, .rightContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+}
+
+.optionsContainer {
+    display: flex;
+    flex-direction: row;
+    height: 60vh;
+}
+
+.half1, .half2 {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
