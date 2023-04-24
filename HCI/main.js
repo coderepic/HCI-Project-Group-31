@@ -27,23 +27,11 @@ var frames = {
                 let lhx = frame.people[0].joints[8].position.x;
                 let lsx = frame.people[0].joints[5].position.x;
                 let rhx = frame.people[0].joints[15].position.x;
-                let rsz = frame.people[0].joints[12].position.x;
+                let rsx = frame.people[0].joints[12].position.x;
 
                 console.log(lhx);
                 console.log(lsx);
 
-                if(leftArmRaised(lh, ls) && rightArmRaised(rh, rs)){
-                    document.getElementById("armtest").innerHTML = "both arms raised";
-                }
-                else if(leftArmRaised(lh, ls)){
-                    document.getElementById("armtest").innerHTML = "left arm raised";
-                }
-                else if(rightArmRaised(rh, rs)){
-                    document.getElementById("armtest").innerHTML = "right arm raised";
-                }
-                else{
-                    document.getElementById("armtest").innerHTML = "no arms raised";
-                }
 
                 //Allow user to select answers with their hands
                 if(currentSceneType == "question"){
@@ -60,9 +48,25 @@ var frames = {
                     }
                 }
 
+                if(currentSceneType == "pickGameMode"){
+                    if(leftArmSelection(lhx, lsx) && rightArmSelection(rhx, rsx)){
+                        //Nothing happens
+                    }
+                    else if(leftArmSelection(lhx, lsx)){
+                        //Select left option
+                        console.log("left");
+                        startTrivia(1);
+                    }
+                    else if(rightArmSelection(rhx, rsx)){
+                        //Select right option
+                        console.log("right");
+                        startTrivia(2);
+                    }
+                }
+
                 //Allow user to transition with their arms.
                 if(currentSceneType == "titleScreen"){
-                    if(leftArmRaised(lh, ls)){
+                    if(armsRaised(lh, ls, rh, rs) == "left"|| armsRaised(lh, ls, rh, rs) == "right"){
                         displayInstructions();
                     }
                 }
@@ -89,6 +93,7 @@ var frames = {
                 }
             }
             else{
+                init();
                 document.getElementById("inputtest").innerHTML = "Nobody at display";
                 document.getElementById("postest").innerHTML = 'no people';
             }
@@ -182,5 +187,24 @@ function displayPosition(frame){
     }
     else{
         document.getElementById("postest").innerHTML = "nobody here!";
+    }
+}
+
+function armsRaised(lh, ls, rh, rs){
+    if(leftArmRaised(lh, ls) && rightArmRaised(rh, rs)){
+        document.getElementById("armtest").innerHTML = "both arms raised";
+        return "both";
+    }
+    else if(leftArmRaised(lh, ls)){
+        document.getElementById("armtest").innerHTML = "left arm raised";
+        return "left";
+    }
+    else if(rightArmRaised(rh, rs)){
+        document.getElementById("armtest").innerHTML = "right arm raised";
+        return "right";
+    }
+    else{
+        document.getElementById("armtest").innerHTML = "no arms raised";
+        return "none";
     }
 }

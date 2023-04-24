@@ -12,7 +12,8 @@ function shuffleQuestions(array){
     array.sort(() => Math.random() - 0.5);
 }
 
-function init(){
+function initialize(){
+    currentSceneType = "titleScreen";
     document.getElementById("title").style.display = 'block';
     shuffleQuestions(questions);
     currentQuestionIndex = 0;
@@ -23,18 +24,17 @@ function init(){
     document.getElementById("scoreVal").innerHTML = "0";
     document.getElementById("finalScoreDisplay").style.display = 'none';
     document.getElementById("questionsRemaining").style.display = 'none';
-    document.getElementById("playbutton").style.display = 'block';
-    currentSceneType = "titleScreen";
+    document.getElementById("tilePage").style.display = 'block';
 }
 
 function displayInstructions(){
-    document.getElementById("title").style.display = 'none';
-    document.getElementById("instructions").style.display = 'block';
-    document.getElementById("playbutton").style.display = 'none';
     currentSceneType = "instructionsScreen";
+    document.getElementById("instructions").style.display = 'block';
+    document.getElementById("titlePage").style.display = 'none';
 }
 
 function startGame(type){
+    currentSceneType = "pickGameMode";
     if(type==1){
         questionList = questions;
     }
@@ -45,17 +45,17 @@ function startGame(type){
     currentQuestionIndex = 0;
     questionsRemaining = 5;
     score = 0;
-    document.getElementById("instructions").style.display = 'none';
-    document.getElementById("canadaButton").style.display = 'block';
-    document.getElementById("brazilButton").style.display = 'block';
-    document.getElementById("finalScoreDisplay").style.display = 'none';
-    document.getElementById("scoreGroup").style.display = 'none';
-    document.getElementById("scoreVal").innerHTML = score.toString();
-    document.getElementById("questionsRemaining").style.display = 'none';
-    currentSceneType = "pickGameMode";
+    // document.getElementById("instructions").style.display = 'none';
+    // document.getElementById("canadaButton").style.display = 'block';
+    // document.getElementById("brazilButton").style.display = 'block';
+    // document.getElementById("finalScoreDisplay").style.display = 'none';
+    // document.getElementById("scoreGroup").style.display = 'none';
+    // document.getElementById("scoreVal").innerHTML = score.toString();
+    // document.getElementById("questionsRemaining").style.display = 'none';
 }
 
 function startTrivia(type){
+    currentSceneType = "question";
     if(type==1){
         questionList = questions;
     }
@@ -66,27 +66,25 @@ function startTrivia(type){
     currentQuestionIndex = 0;
     score = 0;
     shuffleQuestions(questionList);
-    document.getElementById("brazilButton").style.display = 'none';
-    document.getElementById("canadaButton").style.display = 'none';
-    document.getElementById("selectCountry").style.display = 'none';
-    document.getElementById("scoreGroup").style.display = 'block';
-    document.getElementById("scoreVal").innerHTML = score.toString();
-    document.getElementById("questionsRemaining").style.display = 'block';
-    document.getElementById("questionsRemainingElement").innerHTML = questionsRemaining.toString();
+    document.getElementById("instructions").style.display = 'none';
+    // document.getElementById("scoreGroup").style.display = 'block';
+    // document.getElementById("scoreVal").innerHTML = score.toString();
+    // document.getElementById("questionsRemaining").style.display = 'block';
+    // document.getElementById("questionsRemainingElement").innerHTML = questionsRemaining.toString();
     loadQuestion();
-    currentSceneType = "question";
 }
 
 function resultScreen(correct){
     // clearInterval(timerId);
-    //document.getElementById("cnTowerQuestion").style.display = "none";
+    // document.getElementById("cnTowerQuestion").style.display = "none";
     resetTimer();
     optionsArray = document.getElementsByClassName("optionsContainer");
     questionsArray = document.getElementsByClassName("triviaQuestion");
+    questionTextArray = document.getElementsByClassName("questionText");
         
-    for(let i=0; i<questionsArray.length; i++){
-        questionsArray[i].style.display = 'none';        
-    }
+    // for(let i=0; i<questionsArray.length; i++){
+    //     questionsArray[i].style.display = 'none';        
+    // }
 
     for(let i=0; i<optionsArray.length; i++) {
         optionsArray[i].style.display = 'none';
@@ -95,9 +93,18 @@ function resultScreen(correct){
     if (correct == 1) {
         score = score + 1;
         document.getElementById("correctDisplay").style.display = "block";
+        //document.getElementById("questionText").innerHTML = "Correct!";  
+
+        for(let i=0; i<questionTextArray.length; i++){
+            questionTextArray[i].innerHTML = "Correct!";
+        }
     }
     else {
         document.getElementById("incorrectDisplay").style.display = "block";
+        //document.getElementById("questionText").innerHTML = "Incorrect!";  
+        for(let i=0; i<questionTextArray.length; i++){
+            questionTextArray[i].innerHTML = "Incorrect!";
+        }
     }   
     questionsRemaining = questionsRemaining - 1;
     document.getElementById("scoreVal").innerHTML = score.toString();
@@ -109,7 +116,20 @@ function displayResults(){
     document.getElementById("finalScoreDisplay").style.display = "block";        
 }
 
-function loadQuestion(){    
+function loadQuestion(){
+    //document.getElementById("questionText").innerHTML = "What is this geographic landmark?";  
+    questionsArray = document.getElementsByClassName("triviaQuestion");
+    questionTextArray = document.getElementsByClassName("questionText");
+    document.getElementById("timerDiv").style.display = 'block';
+
+    for(let i=0; i<questionTextArray.length; i++){
+        questionTextArray[i].innerHTML = "What is this geographic landmark?";
+    }
+
+    for(let i=0; i<questionsArray.length; i++){
+        questionsArray[i].style.display = 'none';        
+    }
+
     startTimer();
     if(questionsRemaining <= 0){
         currentQuestionIndex = 0;
@@ -123,6 +143,7 @@ function loadQuestion(){
     }
     document.getElementById("correctDisplay").style.display = "none";
     document.getElementById("incorrectDisplay").style.display = "none";
+    document.getElementById("questionsRemaining").style.display = "block";
 
 }
 
