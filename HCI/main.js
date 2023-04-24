@@ -28,10 +28,23 @@ var frames = {
                 let lsx = frame.people[0].joints[5].position.x;
                 let rhx = frame.people[0].joints[15].position.x;
                 let rsx = frame.people[0].joints[12].position.x;
+                
+                if(leftArmSelection(lhx, lsx)){
+                    //Select left option
+                    //resultsScreen(1);
+                    document.getElementById("selectionTEster").innerHTML = "left selection";
+                }
+                else if(rightArmSelection(rhx, rsx)){
+                    //Select right option
+                    //resultsScreen(0);
+                    document.getElementById("selectionTester").innerHTML = "right selection";
+                }
+                else{
+                    document.getElementById("selectionTester").innerHTML = "no selection";
+                }
 
-                console.log(lhx);
-                console.log(lsx);
-
+                console.log(lhx.toString());
+                console.log(lsx.toString());
 
                 //Allow user to select answers with their hands
                 if(currentSceneType == "question"){
@@ -46,9 +59,12 @@ var frames = {
                         //Select right option
                         resultsScreen(0);
                     }
+                    else{
+                        //nothing happens;
+                    }
                 }
 
-                if(currentSceneType == "pickGameMode"){
+                if(currentSceneType == "instructionsScreen"){
                     if(leftArmSelection(lhx, lsx) && rightArmSelection(rhx, rsx)){
                         //Nothing happens
                     }
@@ -83,7 +99,7 @@ var frames = {
                         startTrivia(1);
                     }
                 }
-                else if(currentScenType == "question"){
+                else if(currentSceneType == "question"){
                     if(leftArmSelection(lhx, lsx)){
                         resultScreen(0);
                     }
@@ -93,7 +109,7 @@ var frames = {
                 }
             }
             else{
-                initialize();
+                //initialize();
                 document.getElementById("inputtest").innerHTML = "Nobody at display";
                 document.getElementById("postest").innerHTML = 'no people';
             }

@@ -5,6 +5,7 @@ let mapQuestions = ["nyMap", "denmarkMap", "thailandMap", "SFMap", "BostonMap", 
 var questionList;
 currentQuestionIndex = 0;
 var currentSceneType = "titleScreen";
+var gameMode = "landmarks";
 
 //Code below obtained from: 
 //https://www.educative.io/answers/how-to-shuffle-an-array-in-javascript
@@ -13,6 +14,7 @@ function shuffleQuestions(array){
 }
 
 function initialize(){
+    questionsArray = document.getElementsByClassName("triviaQuestion");
     document.getElementById("instructions").style.display = 'none';
     currentSceneType = "titleScreen";
     document.getElementById("titlePage").style.display = 'block';
@@ -26,6 +28,10 @@ function initialize(){
     document.getElementById("finalScoreDisplay").style.display = 'none';
     document.getElementById("questionsRemaining").style.display = 'none';
     document.getElementById("tilePage").style.display = 'block';
+    document.getElementById("topBarContainer").style.display = 'none';
+    for(let i=0; i<questionsArray.length; i++){
+        questionsArray[i].style.display = 'none';        
+    }
 }
 
 function displayInstructions(){
@@ -59,9 +65,11 @@ function startTrivia(type){
     currentSceneType = "question";
     if(type==1){
         questionList = questions;
+        gameMode = "landmarks";
     }
     else{
         questionList = mapQuestions;
+        gameMode = "maps";
     }
     questionsRemaining = 5;
     currentQuestionIndex = 0;
@@ -124,8 +132,16 @@ function loadQuestion(){
     questionTextArray = document.getElementsByClassName("questionText");
     document.getElementById("timerDiv").style.display = 'block';
 
-    for(let i=0; i<questionTextArray.length; i++){
-        questionTextArray[i].innerHTML = "What is this geographic landmark?";
+
+    if(gameMode == "landmarks"){
+        for(let i=0; i<questionTextArray.length; i++){
+            questionTextArray[i].innerHTML = "What is this geographic landmark?";
+        }
+    }
+    else{
+        for(let i=0; i<questionTextArray.length; i++){
+            questionTextArray[i].innerHTML = "What location is depicted in the map?";
+        }
     }
 
     for(let i=0; i<questionsArray.length; i++){
