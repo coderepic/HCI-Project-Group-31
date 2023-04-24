@@ -93,7 +93,7 @@ var frames = {
                 }
             }
             else{
-                init();
+                initialize();
                 document.getElementById("inputtest").innerHTML = "Nobody at display";
                 document.getElementById("postest").innerHTML = 'no people';
             }

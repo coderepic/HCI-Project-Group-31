@@ -13,8 +13,9 @@ function shuffleQuestions(array){
 }
 
 function initialize(){
+    document.getElementById("instructions").style.display = 'none';
     currentSceneType = "titleScreen";
-    document.getElementById("title").style.display = 'block';
+    document.getElementById("titlePage").style.display = 'block';
     shuffleQuestions(questions);
     currentQuestionIndex = 0;
     questionsRemaining = 5;
@@ -67,10 +68,11 @@ function startTrivia(type){
     score = 0;
     shuffleQuestions(questionList);
     document.getElementById("instructions").style.display = 'none';
-    // document.getElementById("scoreGroup").style.display = 'block';
-    // document.getElementById("scoreVal").innerHTML = score.toString();
-    // document.getElementById("questionsRemaining").style.display = 'block';
-    // document.getElementById("questionsRemainingElement").innerHTML = questionsRemaining.toString();
+    document.getElementById("scoreGroup").style.display = 'block';
+    document.getElementById("scoreVal").innerHTML = score.toString();
+    document.getElementById("questionsRemaining").style.display = 'block';
+    document.getElementById("questionsRemainingElement").innerHTML = questionsRemaining.toString();
+    document.getElementById("questionsAndScore").style.display = 'block';
     loadQuestion();
 }
 

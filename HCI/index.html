@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <img class="twod"/>
+        <!-- <img class="twod"/> -->
 
         <!--TITLE PAGE-->
         <div id="titlePage">
@@ -120,12 +120,12 @@
                     <p></p>
                 </div>
             </div>                
-            <div id="questionsAndScore">
-                <div id="questionsRemaining" class="infoElement" style="display:none; text-align:right">
+            <div id="questionsAndScore" style="display:none">
+                <div id="questionsRemaining" class="infoElement" style="text-align:right">
                     <h2 class="scoreElement">Questions remaining: </h2>
                     <h2 class="scoreElement" id="questionsRemainingElement"></h2>
                 </div>                
-                <div id="scoreGroup" class="infoElement" style="display:none; text-align:right">
+                <div id="scoreGroup" class="infoElement" style="text-align:right">
                     <h2 class="scoreElement">Score: </h2>
                     <h2 class="scoreElement" id="scoreVal"></h2>
                 </div>
@@ -238,7 +238,7 @@
             <button class="triviaOption" onclick="resultScreen(0)">New Haven, Connecticut</h2>
         </div> -->
 
-        <div class="optionsContainer" id="nyMap" style="display: none">
+        <div class="optionsContainer" id="nyMapOptions" style="display: none">
             <div class="leftContainer">
                 <button class="triviaOption" onclick="resultScreen(1)">New York, New York</h2>
             </div>
@@ -255,7 +255,7 @@
             <button class="triviaOption" onclick="resultScreen(1)">Denmark</h2>
         </div> -->
 
-        <div class="optionsContainer" id="denmarkMap" style="display: none">
+        <div class="optionsContainer" id="denmarkMapOptions" style="display: none">
             <div class="leftContainer">
                 <button class="triviaOption" onclick="resultScreen(0)">Ukraine</h2>
             </div>
@@ -271,7 +271,7 @@
             <button class="triviaOption" onclick="resultScreen(0)">Singapore</h2>
             <button class="triviaOption" onclick="resultScreen(1)">Thailand</h2>
         </div> -->
-        <div class="optionsContainer" id="thailandMap" style="display: none">
+        <div class="optionsContainer" id="thailandMapOptions" style="display: none">
             <div class="leftContainer">
                 <button class="triviaOption" onclick="resultScreen(0)">Singapore</h2>
             </div>
@@ -288,7 +288,7 @@
             <button class="triviaOption" onclick="resultScreen(0)">Sydney Harbor</h2>
         </div> -->
 
-        <div class="optionsContainer" id="SFMap" style="display: none">
+        <div class="optionsContainer" id="SFMapOptions" style="display: none">
             <div class="leftContainer">
                 <button class="triviaOption" onclick="resultScreen(1)">San Francisco Bay</h2>
             </div>
@@ -305,7 +305,7 @@
             <button class="triviaOption" onclick="resultScreen(0)">Princeton, New Jersey</h2>
         </div> -->
 
-        <div class="optionsContainer" id="BostonMap" style="display: none">
+        <div class="optionsContainer" id="BostonMapOptions" style="display: none">
             <div class="leftContainer">
                 <button class="triviaOption" onclick="resultScreen(1)">Boston, Massachusetts</h2>
             </div>
@@ -322,7 +322,7 @@
             <button class="triviaOption" onclick="resultScreen(1)">Papua New Guinea</h2>
         </div> -->
 
-        <div class="optionsContainer" id="PNGMap" style="display: none">
+        <div class="optionsContainer" id="PNGmapOptions" style="display: none">
             <div class="leftContainer">
                 <button class="triviaOption" onclick="resultScreen(0)">The Philippines</h2>
             </div>
@@ -346,9 +346,10 @@
 
         <!--Final Results Screen-->
         <div class="finalScoreDisplay" id="finalScoreDisplay" style="display:none; text-align:center">
-            <h1>Congratulations! You completed the game! View your final score above.</h1>
-            <button onclick="startGame()">Play Again</button>
-            <button onClick="init()">Quit to main menu</button>
+            <h1 style="font-size: 50px">Congratulations! You completed the game!</h1>
+            <h1 style="font-size: 50px">View your final score above!</h1>
+
+            <button onclick="initialize()" style="font-size:50px">Raise One Arm to Continue</button>
         </div>
 
         <h1 id="inputtest">Hello!</h1>
