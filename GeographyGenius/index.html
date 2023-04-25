@@ -31,7 +31,7 @@
                 your left arm to select the first option. Extend your right arm
                 to select the second option. </h4>
             <h4>Once you start the game, you will be asked a series of 5 trivia questions.
-                 You will have 30 seconds to answer each question. Extend either your left or
+                 You will have 10 seconds to answer each question. Extend either your left or
                  your right arm based on the option you want to select. When the timer
                  reaches zero, your selection will be confirmed. </h4>
             <h4>Each question you answer correctly will give you a point. 
@@ -59,7 +59,7 @@
         
         <div class="topBarContainer" id="topBarContainer">
             <div class="timerDiv" id="timerDiv" style="display: none">
-                <h2 class="timer" id="timer">00:30</h2>
+                <h2 class="timer" id="timer">00:10</h2>
             </div>                
             <div class="questionPlaceholder" id="questionPlaceholder">
                 <!--Landmark Questions-->
@@ -126,7 +126,7 @@
                 </div>
             </div>                
             <div id="questionsAndScore" style="display:none">
-                <div id="questionsRemaining" class="infoElement" style="text-align:right">
+                <div id="questionsRemaining" class="infoElement" style="text-align:right; font-size: 30px">
                     <h2 class="scoreElement">Questions remaining: </h2>
                     <h2 class="scoreElement" id="questionsRemainingElement"></h2>
                 </div>                
@@ -354,13 +354,13 @@
             <h1 style="font-size: 50px">Congratulations! You completed the game!</h1>
             <h1 style="font-size: 50px">View your final score above!</h1>
 
-            <button onclick="initialize()" style="font-size:50px">Raise One Arm to Continue</button>
+            <button onclick="initialize()" style="font-size:50px">Raise both arms to play again!</button>
         </div>
 
-        <h1 id="inputtest">Hello!</h1>
+        <!-- <h1 id="inputtest">Hello!</h1>
         <h1 id="armtest">armtest</h1>
         <h1 id="postest">postest</h1>
-        <h1 id="selectionTester">selectiontester</h1>
+        <h1 id="selectionTester">selectiontester</h1> -->
 
     </body>
     <script>

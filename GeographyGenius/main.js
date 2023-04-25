@@ -6,6 +6,8 @@ $(document).ready(function () {
     frames.start();
 });
 
+var currentPlayer;
+
 var frames = {
     socket: null,
 
@@ -16,23 +18,70 @@ var frames = {
             frames.show(JSON.parse(event.data));
             //My own line below:
             let frame = JSON.parse(event.data);
+            console.log(frame.people.length.toString());
             if(frame.people.length > 0){
+                var leftSideElements = document.getElementsByClassName("leftContainer");
+                var rightSideElements = document.getElementsByClassName("rightContainer");
+                if(currentSelection == "left"){
+                    for(let i=0; i < leftSideElements.length; i++){
+                        leftSideElements[i].style.background = "green";
+                        rightSideElements[i].style.background = "white";
+                    }
+                }
+                else if(currentSelection == "right"){
+                    for(let i=0; i < rightSideElements.length; i++){
+                        rightSideElements[i].style.background = "green";
+                        leftSideElements[i].style.background = "white";
+                    }
+                }
+                else{
+                    for(let i=0; i < rightSideElements.length; i++){
+                        rightSideElements[i].style.background = "white";
+                        leftSideElements[i].style.background = "white";
+                    }
+                }
                 document.getElementById("inputtest").innerHTML = "Someone at display";
-                document.getElementById("postest").innerHTML = frame.people[0].joints[8].position.x.toString();
-                let lh = frame.people[0].joints[8].position.y;
-                let ls = frame.people[0].joints[5].position.y;
-                let rh = frame.people[0].joints[15].position.y;
-                let rs = frame.people[0].joints[12].position.y;
+                //console.log(cnTowerQuestion["left"]);
 
-                let lhx = frame.people[0].joints[8].position.x;
-                let lsx = frame.people[0].joints[5].position.x;
-                let rhx = frame.people[0].joints[15].position.x;
-                let rsx = frame.people[0].joints[12].position.x;
+                //Identify person that is closest to the center of the screen
+                if(frame.people.length > 1){
+                    // var minX = Math.abs(frame.people[0].joints[0].position.x);
+                    // for(let i=0; i < frame.people.length; i++){
+                    //     if(frame.people[i].joints[0].position.x < minX){
+                    //         currentPlayer = frame.people[i];
+                    //     }
+                    // }
+                    currentPlayer = frame.people[0];
+                }
+                else{
+                    currentPlayer = frame.people[0];
+                }
+
+                // document.getElementById("postest").innerHTML = frame.people[0].joints[8].position.x.toString();
+                // let lh = frame.people[0].joints[8].position.y;
+                // let ls = frame.people[0].joints[5].position.y;
+                // let rh = frame.people[0].joints[15].position.y;
+                // let rs = frame.people[0].joints[12].position.y;
+
+                // let lhx = frame.people[0].joints[8].position.x;
+                // let lsx = frame.people[0].joints[5].position.x;
+                // let rhx = frame.people[0].joints[15].position.x;
+                // let rsx = frame.people[0].joints[12].position.x;
+
+                let lh = currentPlayer.joints[8].position.y;
+                let ls = currentPlayer.joints[5].position.y;
+                let rh = currentPlayer.joints[15].position.y;
+                let rs = currentPlayer.joints[12].position.y;
+
+                let lhx = currentPlayer.joints[8].position.x;
+                let lsx = currentPlayer.joints[5].position.x;
+                let rhx = currentPlayer.joints[15].position.x;
+                let rsx = currentPlayer.joints[12].position.x;
                 
                 if(leftArmSelection(lhx, lsx)){
                     //Select left option
                     //resultsScreen(1);
-                    document.getElementById("selectionTEster").innerHTML = "left selection";
+                    document.getElementById("selectionTester").innerHTML = "left selection";
                 }
                 else if(rightArmSelection(rhx, rsx)){
                     //Select right option
@@ -43,8 +92,8 @@ var frames = {
                     document.getElementById("selectionTester").innerHTML = "no selection";
                 }
 
-                console.log(lhx.toString());
-                console.log(lsx.toString());
+                //console.log(lhx.toString());
+                //console.log(lsx.toString());
 
                 //Allow user to select answers with their hands
                 if(currentSceneType == "question"){
@@ -52,18 +101,30 @@ var frames = {
                         //Nothing happens
                     }
                     else if(leftArmSelection(lhx, lsx)){
+                        currentSelection = "left";
                         //Select left option
-                        resultsScreen(1);
+                        // let leftString = currentQuestionName + "[\"left\"]";
+                        // console.log(leftString);
+                        // let leftdigit = eval(leftString);
+                        // console.log(leftdigit);
+                        //resultScreen(leftdigit);
+                        //currentSceneType = "results";
                     }
                     else if(rightArmSelection(rhx, rsx)){
+                        currentSelection = "right";
                         //Select right option
-                        resultsScreen(0);
+                        // let rightString = currentQuestionName + "[\"right\"]";
+                        // console.log(rightString);
+                        // let rightDigit = eval(rightString);
+                        // console.log(rightDigit);
+                        // resultScreen(rightDigit);
+                        //currentSceneType = "results";
                     }
                     else{
                         //nothing happens;
                     }
                 }
-
+                
                 if(currentSceneType == "instructionsScreen"){
                     if(leftArmSelection(lhx, lsx) && rightArmSelection(rhx, rsx)){
                         //Nothing happens
@@ -72,44 +133,40 @@ var frames = {
                         //Select left option
                         console.log("left");
                         startTrivia(1);
+                        //currentSceneType = "question";
                     }
                     else if(rightArmSelection(rhx, rsx)){
                         //Select right option
                         console.log("right");
                         startTrivia(2);
+                        //currentSceneType = "question";
                     }
                 }
 
                 //Allow user to transition with their arms.
                 if(currentSceneType == "titleScreen"){
-                    if(armsRaised(lh, ls, rh, rs) == "left"|| armsRaised(lh, ls, rh, rs) == "right"){
+                    if(armsRaised(lh, ls, rh, rs) == "left" || armsRaised(lh, ls, rh, rs) == "right"){
                         displayInstructions();
+                        //currentSceneType = "instructionsScreen";
                     }
                 }
-                else if(currentSceneType == "instructionsScreen"){
-                    if(leftArmRaised(lh, ls)){
-                        startGame();
+
+                if(currentSceneType == "results"){
+                    if(armsRaised(lh, ls, rh, rs) == "left" || armsRaised(lh, ls, rh, rs) == "right"){
+                        loadQuestion();
+                        //currentSceneType = "question";
                     }
                 }
-                else if(currentSceneType == "pickGameMode"){
-                    if(leftArmSelection(lhx, lsx)){
-                        startTrivia(0);
-                    }
-                    else if(rightArmSelection(rhx, rsx)){
-                        startTrivia(1);
-                    }
-                }
-                else if(currentSceneType == "question"){
-                    if(leftArmSelection(lhx, lsx)){
-                        resultScreen(0);
-                    }
-                    else if(rightArmSelection(rhx, rsx)){
-                        resultScreen(1);
+
+                if(currentSceneType == "final results"){
+                    if(armsRaised(lh, ls, rh, rs) == "both"){
+                        initialize();
+                        //currentSceneType = "question";
                     }
                 }
             }
             else{
-                //initialize();
+                initialize();
                 document.getElementById("inputtest").innerHTML = "Nobody at display";
                 document.getElementById("postest").innerHTML = 'no people';
             }
